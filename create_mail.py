@@ -5,11 +5,11 @@ from selenium import webdriver
 
 default_password = "T1002001"
 total_complete = 0
+completed_username = []
 
 read_dataFile = pd.read_excel("output_names.xlsx")
 # change to dataFrame
 df = pd.DataFrame(read_dataFile)
-print(df)
 
 for i in range(0, len(df)):
     username = (df.iloc[i][0])
@@ -60,6 +60,8 @@ for i in range(0, len(df)):
         time.sleep(5)
 
         total_complete += 1
+        com_username = username + "@outlook.com"
+        completed_username.append(com_username)
 
         driver.find_element_by_id("idBtn_Back").click()
         time.sleep(2)
@@ -72,3 +74,6 @@ for i in range(0, len(df)):
         continue
 
 print(f'Summery: Total username{len(df)} : Completed: {total_complete}')
+username_df = pd.DataFrame(completed_username)
+username_df.to_csv("Completed Account.csv", index=False)
+print("All done. Programme Terminated")
