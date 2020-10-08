@@ -36,9 +36,15 @@ numbers = random_number_df["random_numbers"]
 filtered_data_frame = pd.concat([first_name, last_name, numbers], axis=1)
 
 filtered_data_frame = filtered_data_frame.assign(combined_value=filtered_data_frame.first_name.astype(
-    str) + "." + filtered_data_frame.last_name.astype(str) + filtered_data_frame.random_numbers.astype(str))
+    str) + "." + filtered_data_frame.last_name.astype(str) + filtered_data_frame.random_numbers.astype(str)
+
+                                                 )
 
 final_data = filtered_data_frame["combined_value"]
+
+final_data_frame = pd.DataFrame(final_data)
+
+final_data = pd.concat([final_data_frame, all_data_df], axis=1, ignore_index=True)
 
 final_data.to_excel("output_names.xlsx",
                     sheet_name='Person`s Name', index=False)
