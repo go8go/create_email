@@ -4,9 +4,48 @@ import pandas as pd
 from selenium import webdriver
 
 default_password = "T1002001"
+choice = 0
+outlook = "outlook.com"
+hotmail = "hotmail.com"
 total_complete = 0
 completed_username = []
 retry = False
+
+# function to validate user_input
+
+
+def validate_input(value):
+    if value == 1 or value == 2:
+        return True
+    else:
+        return False
+
+
+def take_input():
+    user_input = int(input("Type 1 or 2: "))
+
+    is_validate = validate_input(user_input)
+
+    if is_validate:
+        return user_input
+    else:
+        return take_input()
+
+
+# select what type of email you want to create
+print("""
+What type of emails you want to create?
+1. outlook
+2. hotmail
+""")
+
+choice = take_input()
+
+if choice == 1:
+    print("Creating outlook emails")
+else:
+    print("Creating hotmail emails")
+
 
 read_dataFile = pd.read_excel("output_names.xlsx")
 # change to dataFrame
@@ -32,7 +71,17 @@ for i in range(0, len(df)):
         try:
             # username field
             driver.find_element_by_id("MemberName").send_keys(username)
-            time.sleep(1)
+            time.sleep(2)
+
+            # select domain name @outlook.com or @hotmail.com
+            domianName = driver.find_element_by_id("LiveDomainBoxList")
+
+            if(choice == 1):
+                domianName.send_keys(outlook)
+            else:
+                domianName.send_keys(hotmail)
+
+            time.sleep(2)
 
             driver.find_element_by_id("iSignupAction").click()
         except AttributeError:
