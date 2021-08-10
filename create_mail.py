@@ -76,7 +76,7 @@ for i in range(0, len(df)):
             # select domain name @outlook.com or @hotmail.com
             domianName = driver.find_element_by_id("LiveDomainBoxList")
 
-            if(choice == 1):
+            if choice == 1:
                 domianName.send_keys(outlook)
             else:
                 domianName.send_keys(hotmail)
