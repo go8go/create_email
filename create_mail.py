@@ -116,7 +116,12 @@ for i in range(0, len(df)):
         time.sleep(5)
 
         total_complete += 1
-        com_username = username + "@outlook.com"
+
+        if choice == 1:
+            com_username = username + "@outlook.com"
+        else:
+            com_username = username + "@hotmail.com"
+
         completed_username.append(com_username)
 
         driver.find_element_by_id("idBtn_Back").click()
