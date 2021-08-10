@@ -13,14 +13,17 @@ read_dataFile = pd.read_excel("output_names.xlsx")
 df = pd.DataFrame(read_dataFile)
 
 for i in range(0, len(df)):
-    username = (df.iloc[i][0])
-    first_name = (df.iloc[i][1])
-    last_name = (df.iloc[i][2])
+    first_name = (df.iloc[i][0])
+    last_name = (df.iloc[i][1])
+    username = (df.iloc[i][2])
 
     try:
         # url of outlook
         url = 'https://outlook.live.com'
-        driver = webdriver.Chrome("/home/shawan/Script/chromedriver")
+        # uncomment if you in windows
+        # driver = webdriver.Chrome("./win/chromedriver.exe")
+        # comment out if you in windows
+        driver = webdriver.Chrome("./chromedriver")
         driver.get(url)
 
         # get Create free account button and click it
@@ -73,7 +76,7 @@ for i in range(0, len(df)):
         time.sleep(4)
     except:
         print("Username already exist")
-        driver.close()
+    driver.close()
 
 print(f'Summery: Total username: {len(df)} & Completed: {total_complete}')
 username_df = pd.DataFrame(completed_username)
