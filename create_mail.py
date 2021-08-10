@@ -135,4 +135,4 @@ for i in range(0, len(df)):
 print(f'Summery: Total username: {len(df)} & Completed: {total_complete}')
 username_df = pd.DataFrame(completed_username)
 username_df.to_csv("Completed Account.csv", index=False)
-print("All done. Programme Terminated")
+print("All done. Program Terminated")
