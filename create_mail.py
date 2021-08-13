@@ -125,8 +125,6 @@ for i in range(0, len(df)):
         completed_username.append(com_username)
 
         driver.find_element_by_id("idBtn_Back").click()
-        time.sleep(2)
-        driver.close()
         time.sleep(4)
     except:
         print("Username already exist")
